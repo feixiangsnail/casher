@@ -1,33 +1,87 @@
 <div id="orderList">
     <div class="order">
         <div class="orderTop">
-            I am orderTop
+            <div>
+                <select class="form-control orderTopInput">
+                    <option value="">状态</option>
+                    <option value="2">请选择2</option>
+                </select>
+                <input type="text" onclick="laydate()" class="form-control orderTopInput noMargin"> 到
+                <input type="text" onclick="laydate()" class="form-control orderTopInput">
+                <input type="text" class="form-control orderTopInput noMargin" placeholder="订单号">
+            </div>
+            <div class="secondInput">
+                <select class="form-control orderTopInput">
+                    <option value="">桌号</option>
+                    <option value="2">请选择2</option>
+                </select>
+                <select class="form-control orderTopInput">
+                    <option value="">请选择支付方式</option>
+                    <option value="0">现金</option>
+                    <option value="1">余额</option>
+                    <option value="2">刷卡</option>
+                    <option value="3">微信</option>
+                    <option value="4">支付宝</option>
+                    <option value="5">综合</option>
+                    <option value="6">美团</option>
+                    <option value="7">饿了么</option>
+                    <option value="8">百度9</option>
+                    <option value="9">其它</option>
+                </select>
+                <span class="orderTopInput  search" @click="searchData">
+                    搜索
+                </span>
+                <span class="orderTopInput clearHandle">
+                    清空操作
+                </span>
+            </div>
         </div>
-
-
-
+        <div class="tc">
+            <page-peak @navpage="showMemberData" :posturl=" '/api/site_buyer_select.vm' " :postdata="searchItem" ref="orderDom"></page-peak>
+        </div>
+        <ul class="orderContent">
+            <li v-for="item in 7" class="clearfix">
+                <div class=""></div>
+                <div>01</div>
+                <div>2号桌</div>
+                <div>微信</div>
+                <div>
+                    <p>1922..333</p>
+                    <p>898646542331</p>
+                </div>
+                <div>
+                    <p>金额
+                        <span>￥33</span>
+                    </p>
+                    <p>金额
+                        <span>￥33</span>
+                    </p>
+                </div>
+                <div>未付款</div>
+                <div class="orderBtn">
+                    付款
+                </div>
+            </li>
+        </ul>
     </div>
-
-
 </div>
-
 <link rel="stylesheet" href="assets/css/orderList.css">
-
-
-
 <script>
     new Vue({
         el: '#orderList',
         data: {
-            a: 'I am a'
+            searchItem:{
+
+            }
+        },
+        methods:{
+            showMemberData(d){
+                console.log(d,'ddddddddddd')
+            },
+            searchData(){
+                this.$refs.orderDom.getAjaxData();
+            }
         }
-
-
-
-
     }
     )
-
-
-
 </script>

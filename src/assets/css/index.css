@@ -1,3 +1,10 @@
+/*
+ * @Author: ZhangShuai 
+ * @Date: 2018-02-02 15:07:36 
+ * @Last Modified by: ZhangShuai
+ * @Last Modified time: 2018-02-02 16:28:52
+ */
+
 html {
     height: 100%;
 }
@@ -7,6 +14,9 @@ body {
     font-size: 18px;
     background-color: #e5e5e5;
     font-family: "微软雅黑"
+}
+.tc{
+    text-align: center;
 }
 .clearfix:after{content:'.';display:block;height:0;clear:both;visibility:hidden}
 ul,li,h3,body,dl,dt,dd {
@@ -53,3 +63,23 @@ ul,li,h3,body,dl,dt,dd {
     margin-left:0.8rem;
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
