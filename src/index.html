@@ -6,321 +6,55 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>收银系统</title>
     <link rel="stylesheet" href="assets/css/normalize.css" />
-    <link rel="stylesheet" href="assets/css/cashier-system.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
 <body>
-
-    <div class="contaniner" id="contaniner">
-        <div id="masking" v-show="maskData.showMasking">
-            <div class="toastStyle">
-                {{maskData.toastMessage}}
-            </div>
-
-        </div>
-        <!-- 左边 -->
-        <div class="system">
-            <div class="system-select shouyin active" @click="Cashier">
+    <!-- 左边 -->
+    <div class="system">
+        <div class="system-select shouyin active" @click="Cashier">
+            <a href="#/">
                 <img src="//pic.iidingyun.com/file/2452/icn_shouyin.png" alt="">
-                <div>收银</div>
-            </div>
-            <div class="system-select dingdan">
-                <img src="//pic.iidingyun.com/file/2452/icn_dingdan.png" alt="">
-                <div>订单</div>
-            </div>
-            <div class="system-select waimai">
-                <img src="//pic.iidingyun.com/file/2452/icn_waimai.png" alt="">
-                <div>外卖</div>
-            </div>
-            <div class="system-select kexian">
-                <img src="//pic.iidingyun.com/file/2452/icn_kexian.png" alt="">
-                <div>打开客显</div>
-            </div>
-            <div class="system-select jiaoban">
-                <img src="//pic.iidingyun.com/file/2452/icn_jiaoban.png" alt="">
-                <div>交班结算</div>
-            </div>
-        </div>
-        <!-- 中间 -->
-        <div class="cashier">
-            <ul class="title" v-if="p1Show">
-                <li class="new">
-                    <img src="//pic.iidingyun.com/file/2452/shouyin_btn_plus.png" alt="">
-                </li>
-                <li class="item">收银
-                    <img src="//pic.iidingyun.com/file/2452/shouyin_btn_close.png" alt="">
-                </li>
-                <li class="item">收银
-                    <img src="//pic.iidingyun.com/file/2452/shouyin_btn_close.png" alt="">
-                </li>
-                <li class="item">收银
-                    <img src="//pic.iidingyun.com/file/2452/shouyin_btn_close.png" alt="">
-                </li>
-            </ul>
-            <div class="selected-item" v-if="p2Show">已选菜品</div>
-            <div class="msg" v-if="p1Show">
                 <div>
-                    <span class="text">折扣:</span>
-                    <input type="text" v-model="setDiscount" value="5" @focus="showDiscount">
+
+                    收银
+
+
+
                 </div>
-                <div v-for="(discount,disIndex) in discountList">
-                    <span class="text">{{discount.name}}:</span>
-                    <input @focus="disCountInput(disIndex)" type="text" v-model="discount.nameValue" value="5">
-                </div>
-                <ul class="keyboard" v-if="smalllKeyboard">
-                    <li :class="{big:numIndex==16 || numIndex==17,colorb8:numIndex==17}" v-for="(num,numIndex) in smallKeyBoardList" @click="smalllKeyboardSelect(numIndex)"
-                        v-html="num"></li>
-                </ul>
-                <!--折扣面板-->
-                <ul class="keyboard discount" v-show="isShowDiscount">
-                    <li v-for="(dis,disIndex) in getDiscountList" @click="selectDiscount(disIndex)">{{dis.discount}}</li>
-                </ul>
-            </div>
-            <div class="getfood">
-                <!--单品点餐-->
-                <div class="food-item" v-if="p1Show" v-for="(food,foodIndex) in shopProductList" @click.stop="selectProductTaste(foodIndex)">
-                    <div class="food-content">
-                        <!--{{food}}-->
-                        <div class="food-name">{{food.product_name}}
-                            <span v-if="food.remark" class="remark">({{food.remark}})</span>
-                        </div>
-                        <div class="price">
-                            <span class="yuanjia">¥{{food.price}} </span>
-                            <span class="xianjia">¥{{food.price}}</span>
-                        </div>
-                    </div>
-                    <div class="food-num">
-                        <img src="//pic.iidingyun.com/file/2452/btn_minus.png" alt="" @click.stop="minus(foodIndex,1)">
-                        <input v-model="food.num" type="text">
-                        <img src="//pic.iidingyun.com/file/2452/btn_plus.png" alt="" @click.stop="add(foodIndex,1)">
-                    </div>
-                    <!--套餐显示-->
-                    <div class="pack-item" v-for="(packFood,pacIndex) in food.site_product_accessory" @click.stop="selectProductTaste(foodIndex,pacIndex)">
-                        <div>{{packFood.accessory_name}}
-                            <span v-if="packFood.remark" class="remark">({{packFood.remark}})</span>
-                            <span class="xianjia">¥ {{packFood.price}}</span>
-                        </div>
-                        <!--<div>白灼秋葵 <span class="xianjia">¥ 58</span></div>-->
-                        <!--<div>白灼秋葵 <span class="xianjia">¥ 58</span></div>-->
-                    </div>
-                </div>
-                <!--套餐点餐-->
-                <div class="food-item" v-if="p2Show" v-for="(food,foodIndex) in packProductList">
-                    <div class="food-content">
-                        <div class="food-name">{{food.accessory_name}}</div>
-                        <div class="price">
-                            <span class="yuanjia">¥{{food.price}} </span>
-                            <span class="xianjia">¥{{food.price}}</span>
-                        </div>
-                    </div>
-                    <div class="food-num">
-                        <img src="//pic.iidingyun.com/file/2452/btn_minus.png" alt="" @click.stop="minus(foodIndex,2)">
-                        <input v-model="food.num" type="text">
-                        <!--<span>{{food.num}}</span>-->
-                        <img src="//pic.iidingyun.com/file/2452/btn_plus.png" alt="" @click.stop="add(foodIndex,2)">
-                    </div>
-                </div>
-            </div>
-            <div class="checkout-content">
-                <div class="nums">
-                    <div v-if="p1Show">
-                        <span class="total">共{{totalNumber()}}份</span>
-                        <span class="heji">合计¥{{totalPrice(1)}}</span>
-                    </div>
-                    <div class="youhui" v-if="p1Show">优惠 ¥{{promotionPrice()}}</div>
-                    <div class="info" v-if="p1Show">
-                        <div>备注：</div>
-                        <div class="content">
-                        </div>
-                        <span class="shishou">实收 ¥{{finalPrice()}}</span>
-                    </div>
-                    <div class="shishou2" v-if="p2Show">合计¥{{totalPrice(2)}}</div>
-                </div>
-                <div class="btns" v-if="p1Show">
-                    <div class="clear" @click="clearSelected(1)">清空</div>
-                    <div class="pay">后付</div>
-                    <div class="checkout" @click="finalCheckOut">结算</div>
-                </div>
-                <div class="btns" v-if="p2Show">
-                    <div class="clear2" @click="clearSelected(2)">清空</div>
-                    <div class="checkout2" @click="packMakeSure">确认</div>
-                </div>
-            </div>
+            </a>
         </div>
-        <!-- 右边 -->
-        <div class="food" v-if="p1ShowChild">
-            <div class="food-names" v-if="p1Show">
-                <div class="title">
-                    <div v-for="(foodName,foodNameIndex) in allProductList" :class="{active:foodNameIndex==pageNum}" @click="foodSwitch(foodNameIndex)">
-                        {{foodName.type_name}}
-                    </div>
+        <div class="system-select dingdan">
+            <a href="#/orderList">
+                <img src="//pic.iidingyun.com/file/2452/icn_dingdan.png" alt="">
+                <div>
+
+
+                    订单
+
+
                 </div>
-                <div class="search">
-                    <input type="text">
-                    <!-- <img src="//pic.iidingyun.com/file/2452/icn_find.png" alt=""> -->
-                </div>
-            </div>
-            <div class="package-food" v-if="p2Show">{{packName}}
-                <span class="package-price">¥{{packPrice}}</span>
-            </div>
-            <div class="food-box">
-                <!--单品点餐-->
-                <div class="foot-names" v-for="(allfood,allfoodIndex) in allProductList" v-if="p1Show && allfoodIndex==pageNum">
-                    <!--<div class="big-type" v-if="p2Show">
-                            主菜 1/1
-                        </div>-->
-                    <div :aaa="111" class="food-name" v-for='(food,foodIndex) in allfood.shop_product' @click="selectfood(allfoodIndex,foodIndex,1)">
-                        {{food.product_name}}
-                        <div class="price">¥{{food.price}}</div>
-                        <span class='badge' v-if="food.num>0">{{food.num}}</span>
-                    </div>
-                </div>
-                <!--套餐点餐-->
-                <div class="foot-names" v-if="p2Show" v-for="(packFood,packAllfoodIndex) in packAllProductList">
-                    <div class="big-type" v-clock>
-                        {{packFood.title}} 【{{packFood.is_multiple == 1 ? "必选配制" : "可选配制" }}】
-                        <span class="big-type-num">最多选{{packFood.max_quantity}}项/最少选{{packFood.min_quantity}}项 </span>
-                    </div>
-                    <div class="food-name" v-for='(sitefood,siteFoodIndex) in packFood.site_product_accessory' @click="selectfood(packAllfoodIndex,siteFoodIndex,2)">
-                        {{sitefood.accessory_name}}
-                        <div class="price">¥{{sitefood.price}}</div>
-                        <span class='badge' v-if="sitefood.num>0">{{sitefood.num}}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="food-taste" v-if="isTasteShow">
-                #*
-                <div class="guige">
-                    <h3>选择规格</h3>
-                    <ul>
-                        <li class="active2">大份</li>
-                        <li>中份</li>
-                        <li>小份</li>
-                    </ul>
-                </div>*#
-                <div class="guige">
-                    <h3>选择口味</h3>
-                    <ul>
-                        <li :class="{active2:tasteSelectStr.indexOf(tasteIndex+'|') != -1}" v-for="(taste,tasteIndex) in tasteList" @click="selectTaste(tasteIndex)">{{taste}}</li>
-                    </ul>
-                </div>
-                <div class="btn-confirm">
-                    <div class="cancel" @click="hideMask">取消</div>
-                    <div class="sure" @click="tasteMakeSure">确认</div>
-                </div>
-            </div>
+            </a>
         </div>
-        <!-- 收银 -->
-        <div class="shouyin-container" v-if="!p1ShowChild">
-            <div class="shouyin-way">
-                <div class="payway">
-                    <ul>
-                        <li v-for="(pay,payIndex) in getPayWayList" v-if="pay.pay_type_code || pay.type_name" :typeid="pay.typeid" :shopid="pay.shopid"
-                            :class="{active3:scorePriceStr1.indexOf(payIndex + '|') !=-1 }" @click="selectPayWay(payIndex)">{{pay.type_name}}</li>
-                    </ul>
-                    <!--<ul>
-                            <li :class="{active3:payMoneyIndex==moneyIndex}" v-for="(money,moneyIndex) in payMoneyList" @click="selectMoney(moneyIndex)">¥ {{money}}</li>
-                            <li>¥ 30</li>
-                            <li>¥ 20</li>
-                            <li>¥ 10</li>
-                            <li>¥ 5</li>
-                        </ul>-->
-                    <ul>
-                        <li :class="{coupons:true,active3:scorePriceStr2.indexOf(ticketIndex + '|') !=-1}" v-for="(ticket,ticketIndex) in userTicketData"
-                            @click="selectCoupons(ticketIndex)">
-                            {{ticket.ticket_name}}
-                            <br> {{ticket.discount_value}}
-                        </li>
-                    </ul>
-                </div>
-
-                <ul class="member" v-if="chargeR.hideChargeDg">
-                    <li>会员</li>
-                    <li>卡号：
-                        <input v-model="memberCardNo" id="memberCardNo" type="text" @keyup.enter='getMemberMsgFn(memberCardNo)' />
-                    </li>
-                    <li>姓名：
-                        <input v-model="memberMsgList.user_name" type="text" />
-                        <span v-if='userScoresData.balance'>余额：¥{{userScoresData.balance}}</span>
-                    </li>
-                    <li>会员号：{{memberMsgList.userid}}</li>
-                    <li>预存：
-                        <input v-model="memberMsgList.storage" type="text" name="" id="" value="" />
-                    </li>
-                    <li>电话：
-                        <input v-model='memberMsgList.mobile' type="text" name="" id="" value="" />
-                    </li>
-                    <li class="btn">
-                        <button>注销</button>
-                        <button @click="openAnAccount()">开户</button>
-                        <button class="active3" @click="openChargeDg">充值</button>
-                    </li>
-                </ul>
-
-                <ul class="member " v-else>
-                    <ul class="chargeDg clearfix">
-
-                        <li v-for="chargeItem in chargeR.chargeList" :class="{active3:chargeR.postData.buyer_payment_type===chargeItem.code}" @click="chooseChargeWay(chargeItem.code)">{{chargeItem.name}}</li>
-                    </ul>
-                    <div class="scanCode" v-show="chargeR.postData.buyer_payment_type==4 || chargeR.postData.buyer_payment_type==5 ">
-                        扫码:
-                        <input type="text" ref="chargeInput" @keyup.enter="chargePost" v-model="chargeR.postData.auth_code">
-                    </div>
-                    <div class="chargeClose" @click="closeChargeDg">
-                        关闭
-                    </div>
-                </ul>
-
-
-
-
-
-            </div>
-            <div class="calc">
-                <div class="payway-select">
-                    <div>
-                        <div class="money">
-                            <span>合计¥{{totalPrice(1)}}</span>
-                            <span>优惠
-                                <span class="colorred">¥ {{promotionPrice()}}</span>
-                            </span>
-                            <span>实收
-                                <span class="colorred">¥ {{finalPrice()}}</span>
-                            </span>
-                        </div>
-                        <ul>
-                            <li v-for="(pay,payIndex) in PayWayList" v-if="pay.type_name" :typeid="pay.typeid" @click="getInputVal(payIndex)" :class="{active4:tempInputIndex==payIndex}">
-                                <span class="txt">{{pay.type_name}}（¥）：</span>
-                                <input type="text" v-model.number="pay.price">
-                                <img src="//pic.iidingyun.com/file/2452/btn_delete.png" alt="" @click="selectPay(payIndex)">
-                            </li>
-                            <li v-if="PayWayList.length > 0">
-                                <span class="txt">找零（¥）：</span>
-                                <input readonly="readonly" type="number" id="zero" name="zero" v-model="zero()"> </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="keybord">
-                    <ul>
-
-                        <li :class="{huilv:numIndex==13}" v-for="(num,numIndex) in keyBoardNumList" v-html="num" @click="selectNums(numIndex)"></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="eat">
-                扫码
-                <input id="sweepNum" @keyup.enter='payMoneyCheckOut()' type="text">
-                <div class="btns">
-                    <button class="tangshi" @click="payMoney()">堂食</button>
-                    <button class="ziqu">自取</button>
-                    <button class="fanhui" @click="returnFn()">返回</button>
-                </div>
-            </div>
+        <div class="system-select waimai">
+            <img src="//pic.iidingyun.com/file/2452/icn_waimai.png" alt="">
+            <div>外卖</div>
         </div>
-        <div v-if="isShow" :class="{mask:isShow}" @click="hideMask"></div>
-        <div class="toast-container" v-if="isShowToast">
-            {{toastContent}}
+        <div class="system-select kexian">
+            <img src="//pic.iidingyun.com/file/2452/icn_kexian.png" alt="">
+            <div>打开客显</div>
         </div>
+        <div class="system-select jiaoban">
+            <img src="//pic.iidingyun.com/file/2452/icn_jiaoban.png" alt="">
+            <div>交班结算</div>
+        </div>
+    </div>
+
+    <div id="mainRouter">
+
+
+
+
     </div>
 </body>
 <div id="web_printer_plugin"></div>
@@ -349,6 +83,9 @@
 
 
 </script>
-<script src="assets/js/cashier-system.js"></script>
+
+<script src="assets/js/routermix.js"></script>
+<script src="assets/js/index.js"></script>
+
 
 </html>

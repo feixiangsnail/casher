@@ -1,27 +1,9 @@
-html {
-    height: 100%;
-}
-body {
-    height: 100%;
-    color: #fff;
-    font-size: 18px;
-    background-color: #e5e5e5;
-    font-family: "微软雅黑"
-}
-/* ::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-    }*/
-    .clearfix:after{content:'.';display:block;height:0;clear:both;visibility:hidden}
-ul,li,h3,body,dl,dt,dd {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
+
 .contaniner {
     height: 100%;
     overflow: scroll;
     position: relative;
+    color: #fff;
 }
 #masking{
     width:100%;
@@ -54,38 +36,8 @@ ul,li,h3,body,dl,dt,dd {
 .hide {
     display: none;
 }
-/*设置界面*/
-/*左边*/
-.system {
-    height: 100%;
-    width: 7.1%;
-    background-color: #000;
-    position: relative;
-}
-.system-select {
-    width: 100%;
-    text-align: center;
-    padding-top: 15px;
-    height: 65px;
-    font-size: 12px;
-}
-.jiaoban, .kexian {
-    position: absolute;
-}
-.jiaoban {
-    bottom: 80px;
-}
-.kexian {
-    bottom: 0;
-}
-.active {
-    background-color: #38cecc;
-    color: #fff;
-}
-.active2 {
-    background-color: #38cecc;
-    color: #fff;
-}
+
+
 /*收银界面*/
 /*中间*/
 .cashier {

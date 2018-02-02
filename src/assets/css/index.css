@@ -1,0 +1,55 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+   
+    font-size: 18px;
+    background-color: #e5e5e5;
+    font-family: "微软雅黑"
+}
+.clearfix:after{content:'.';display:block;height:0;clear:both;visibility:hidden}
+ul,li,h3,body,dl,dt,dd {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+/*设置界面*/
+/*左边*/
+.system {
+    float:left;
+    height: 100%;
+    width: 0.8rem;
+    background-color: #000;
+    position: relative;
+    color: #fff;
+}
+.system-select {
+    width: 100%;
+    text-align: center;
+    padding-top: 15px;
+    height: 65px;
+    font-size: 12px;
+}
+.jiaoban, .kexian {
+    position: absolute;
+}
+.jiaoban {
+    bottom: 80px;
+}
+.kexian {
+    bottom: 0;
+}
+.active {
+    background-color: #38cecc;
+    color: #fff;
+}
+.active2 {
+    background-color: #38cecc;
+    color: #fff;
+}
+
+#mainRouter{
+    margin-left:0.8rem;
+    
+}

@@ -1,24 +1,4 @@
-function gGet(url, params) {
-    return axios({
-        method: 'get',
-        url: url,
-        params,
-        withCredentials: true,
-        timeout: 30000
-    })
-}
-function gPost(url, data) {
-    return axios({
-        method: 'post',
-        url: url,
-        data: data,
-        timeout: 30000,
-        withCredentials: true,
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        }
-    })
-}
+
 var cashierSystemContainer = new Vue({
     el: "#contaniner",
     data: {
@@ -331,6 +311,7 @@ var cashierSystemContainer = new Vue({
         },
         // 点击标题弹出口味选择
         selectProductTaste: function (tap1index, tap2index) {
+            console.log('tanchukouwei')
             if (this.isCanShowTaste) {
                 this.shopProductIndex = tap1index;
                 var tempName;
@@ -1147,3 +1128,4 @@ var cashierSystemContainer = new Vue({
         }
     }
 });
+
