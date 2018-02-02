@@ -1,0 +1,37 @@
+{
+  "name": "fuhui",
+  "version": "1.0.0",
+  "description": "简洁vue，adminLET脚手架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot --inline  --host 0.0.0.0 --content-base src/",
+    "webpack": "webpack"
+  },
+  "author": "zhang",
+  "license": "MIT",
+  "keywords": [
+    "webpack",
+    "vue",
+    "adminLET",
+    "SPA"
+  ],
+  "dependencies": {
+    "css-loader": "^0.28.0",
+    "html-webpack-plugin": "^2.28.0",
+    "style-loader": "^0.16.0",
+    "url-loader": "^0.5.8",
+    "watchpack": "^1.4.0",
+    "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-dev-server": "^2.4.2",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-component": "^0.9.1",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.23.0",
+    "open-browser-webpack-plugin": "^0.0.5"
+  }
+}
