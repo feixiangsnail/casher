@@ -1,49 +1,66 @@
+//路由配置信息
 var routeList = {
     id: 'mainRouter',
-    routes: [
-        {
-            path: '/', pageUrl: 'pages/cash_page.html',
+    routes: [{
+            path: '/',
+            pageUrl: 'pages/cash_page.html',
         },
         {
-            path: '/orderList', pageUrl: 'pages/order_list.html',
+            path: '/orderList',
+            pageUrl: 'pages/order_list.html',
         },
     ]
 }
-init();
-function init() {
-    initStyle()
-    route = new RouterMix(routeList);
-    $(window).resize(function ()// 绑定到窗口的这个事件中
-    {
-        initStyle()
-    });
-}
-function initStyle() {
-    var whdef = 100 / 1280;// 表示1920的设计图,使用100PX的默认值
-    var wH = window.innerHeight;// 当前窗口的高度
-    console.log(wH,'wh')
-    var wW = window.innerWidth;// 当前窗口的宽度
-    var rem = wW * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
-    $('html').css('font-size', rem + "px");
-}
-function gGet(url, params) {
-    return axios({
-        method: 'get',
-        url: url,
-        params,
-        withCredentials: true,
-        timeout: 30000
-    })
-}
-function gPost(url, data) {
-    return axios({
-        method: 'post',
-        url: url,
-        data: data,
-        timeout: 30000,
-        withCredentials: true,
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
+
+var route = new RouterMix(routeList);
+var appVm = new Vue({
+    el: '#app',
+    data: {
+        route: route,
+        leftBarList: [{
+                path: '#/',
+                imgUrl: '//pic.iidingyun.com/file/2452/icn_shouyin.png',
+                name: '收银'
+            },
+            {
+                path: '#/orderList',
+                imgUrl: '//pic.iidingyun.com/file/2452/icn_dingdan.png',
+                name: '订单'
+            },
+            {
+                path: '#/',
+                imgUrl: '//pic.iidingyun.com/file/2452/icn_waimai.png',
+                name: '外卖'
+            },
+            {
+                path: '#/',
+                imgUrl: '//pic.iidingyun.com/file/2452/icn_jiaoban.png',
+                name: '交班结算'
+            },
+
+        ],
+        selectMenu: 0,
+
+    },
+    mounted() {
+        this.getCurPath()
+
+    },
+    methods: {
+        menuChange(index) {
+            this.selectMenu = index;
+        },
+        getCurPath() {
+            var curPath = '#' + location.href.split('#')[1];
+           
+            for (var i = 0; i < this.leftBarList.length; i++) {
+                if (this.leftBarList[i].path == curPath) this.selectMenu = i;
+
+            }
+           
+            return curPath;
         }
-    })
-}
+
+    }
+})
+
