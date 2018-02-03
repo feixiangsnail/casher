@@ -764,6 +764,7 @@ var cashierSystemContainer = new Vue({
         },
         //    结算
         finalCheckOut: function () {
+            
             this.isCanShowTaste = false;
             if (this.totalNumber() > 0) {
                 this.p1Show = true;

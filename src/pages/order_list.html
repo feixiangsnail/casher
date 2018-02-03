@@ -15,7 +15,7 @@
                     <option value="">桌号</option>
                     <option value="2">请选择2</option>
                 </select>
-                <select class="form-control orderTopInput">
+                <select class="form-control orderTopInput" >
                     <option value="">请选择支付方式</option>
                     <option value="0">现金</option>
                     <option value="1">余额</option>
@@ -28,7 +28,7 @@
                     <option value="8">百度9</option>
                     <option value="9">其它</option>
                 </select>
-                <span class="orderTopInput  search" @click="searchData">
+                <span class="orderTopInput  search">
                     搜索
                 </span>
                 <span class="orderTopInput clearHandle">
@@ -36,9 +36,9 @@
                 </span>
             </div>
         </div>
-        <div class="tc">
-            <page-peak @navpage="showMemberData" :posturl=" '/api/site_buyer_select.vm' " :postdata="searchItem" ref="orderDom"></page-peak>
-        </div>
+       
+
+
         <ul class="orderContent">
             <li v-for="item in 7" class="clearfix">
                 <div class=""></div>
@@ -66,22 +66,39 @@
     </div>
 </div>
 <link rel="stylesheet" href="assets/css/orderList.css">
-<script>
-    new Vue({
-        el: '#orderList',
-        data: {
-            searchItem:{
 
-            }
-        },
-        methods:{
-            showMemberData(d){
-                console.log(d,'ddddddddddd')
-            },
-            searchData(){
-                this.$refs.orderDom.getAjaxData();
-            }
+<script>
+new Vue({
+    el: '#orderList',
+    data: {
+        searchItem: {
+
         }
+    },
+    methods: {
+        showData(d) {
+            console.log(d, 'ddddddddddd')
+        },
+       
     }
-    )
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>

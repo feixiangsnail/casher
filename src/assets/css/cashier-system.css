@@ -1,43 +1,36 @@
-
 .contaniner {
     height: 100%;
     overflow: scroll;
     position: relative;
     color: #fff;
 }
-#masking{
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.5);
+#masking {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0.5;
     position: absolute;
-    z-index:999;
-   
-
-    
+    z-index: 999;
 }
-#masking .toastStyle{
-    background:rgba(1,1,1,1);
-    width:200px;
-    height:80px;
+#masking .toastStyle {
+    background: rgba(1, 1, 1, 1);
+    width: 200px;
+    height: 80px;
     line-height: 80px;
-    font-size:22px;
+    font-size: 22px;
     text-align: center;
     font-weight: 600;
-    margin:300px auto;
-    color:#38cecc;
+    margin: 300px auto;
+    color: #38cecc;
 }
-
-
-
-.system, .cashier, .food {
+.system,
+.cashier,
+.food {
     float: left;
 }
 .hide {
     display: none;
 }
-
-
 /*收银界面*/
 /*中间*/
 .cashier {
@@ -150,9 +143,9 @@
     padding-right: 14px;
     color: #000;
     font-size: 14px;
-    overflow: scroll;
+    /* overflow: scroll;
     position: relative;
-    z-index: 1;
+    z-index: 1; */
     height: 540px;
 }
 .getfood .food-item {
@@ -204,7 +197,7 @@
     overflow: hidden;
     width: 100%;
     /*height: 148px;*/
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     color: #000;
     font-size: 14px;
@@ -508,9 +501,8 @@ input {
     padding-top: 10px;
     border-bottom: none;
 }
-.shouyin-container .shouyin-way .member{
-    height:300px;
-    
+.shouyin-container .shouyin-way .member {
+    height: 300px;
 }
 .shouyin-container .shouyin-way .member li {
     border-bottom: 1px solid #e5e5e5;
@@ -532,35 +524,29 @@ input {
     cursor: pointer;
 }
 /* 充值=========start */
-.shouyin-container .shouyin-way .chargeDg li{
-    width:40%;
-    height:36px;
-    background:#f1f1f1;
-    margin-top:10px;
+.shouyin-container .shouyin-way .chargeDg li {
+    width: 40%;
+    height: 36px;
+    background: #f1f1f1;
+    margin-top: 10px;
     text-align: center;
-    line-height:36px;
-    border:2px solid #7b7b7b;
-    color:#9b9b9b;
-    user-select:none;
+    line-height: 36px;
+    border: 2px solid #7b7b7b;
+    color: #9b9b9b;
+    user-select: none;
 }
 .shouyin-container .shouyin-way .chargeDg li:hover {
-    cursor:pointer;
+    cursor: pointer;
 }
-
-.shouyin-way .chargeDg li:nth-child(odd){
-   
-    
-    float:left;
-    
+.shouyin-way .chargeDg li:nth-child(odd) {
+    float: left;
 }
-.shouyin-way .chargeDg li:nth-child(even){
-    float:right;
-    
+.shouyin-way .chargeDg li:nth-child(even) {
+    float: right;
 }
-.scanCode{
-    height:40px;
-    margin:10px 0;
-   
+.scanCode {
+    height: 40px;
+    margin: 10px 0;
 }
 .scanCode input {
     width: 60%;
@@ -572,38 +558,25 @@ input {
     /* border-radius: 20px; */
     padding-left: 20px;
 }
-.chargeClose{
-    width:80%;
-    margin:auto;
-    height:46px;
-    background:#f1f1f1;
-    margin-top:20px;
+.chargeClose {
+    width: 80%;
+    margin: auto;
+    height: 46px;
+    background: #f1f1f1;
+    margin-top: 20px;
     text-align: center;
-    line-height:46px;
-    color:#9b9b9b;
-    user-select:none;
-    border-radius:25px;
-    font-size:20px;
-
+    line-height: 46px;
+    color: #9b9b9b;
+    user-select: none;
+    border-radius: 25px;
+    font-size: 20px;
 }
-.chargeClose:hover{
-    background:#38cecc;
-    color:white;
-    cursor:pointer;
+.chargeClose:hover {
+    background: #38cecc;
+    color: white;
+    cursor: pointer;
 }
-
-
-
-
-
-
 /* 充值========end */
-
-
-
-
-
-
 .shouyin-container .shouyin-way .payway ul {
     overflow: hidden;
 }

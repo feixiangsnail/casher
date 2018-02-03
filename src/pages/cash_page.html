@@ -3,9 +3,7 @@
         <div class="toastStyle">
             {{maskData.toastMessage}}
         </div>
-
     </div>
-
     <!-- 中间 -->
     <div class="cashier">
         <ul class="title" v-if="p1Show">
@@ -33,8 +31,7 @@
                 <input @focus="disCountInput(disIndex)" type="text" v-model="discount.nameValue" value="5">
             </div>
             <ul class="keyboard" v-if="smalllKeyboard">
-                <li :class="{big:numIndex==16 || numIndex==17,colorb8:numIndex==17}" v-for="(num,numIndex) in smallKeyBoardList" @click="smalllKeyboardSelect(numIndex)"
-                    v-html="num"></li>
+                <li :class="{big:numIndex==16 || numIndex==17,colorb8:numIndex==17}" v-for="(num,numIndex) in smallKeyBoardList" @click="smalllKeyboardSelect(numIndex)" v-html="num"></li>
             </ul>
             <!--折扣面板-->
             <ul class="keyboard discount" v-show="isShowDiscount">
@@ -180,8 +177,7 @@
         <div class="shouyin-way">
             <div class="payway">
                 <ul>
-                    <li v-for="(pay,payIndex) in getPayWayList" v-if="pay.pay_type_code || pay.type_name" :typeid="pay.typeid" :shopid="pay.shopid"
-                        :class="{active3:scorePriceStr1.indexOf(payIndex + '|') !=-1 }" @click="selectPayWay(payIndex)">{{pay.type_name}}</li>
+                    <li v-for="(pay,payIndex) in getPayWayList" v-if="pay.pay_type_code || pay.type_name" :typeid="pay.typeid" :shopid="pay.shopid" :class="{active3:scorePriceStr1.indexOf(payIndex + '|') !=-1 }" @click="selectPayWay(payIndex)">{{pay.type_name}}</li>
                 </ul>
                 <!--<ul>
                     <li :class="{active3:payMoneyIndex==moneyIndex}" v-for="(money,moneyIndex) in payMoneyList" @click="selectMoney(moneyIndex)">¥ {{money}}</li>
@@ -191,14 +187,12 @@
                     <li>¥ 5</li>
                 </ul>-->
                 <ul>
-                    <li :class="{coupons:true,active3:scorePriceStr2.indexOf(ticketIndex + '|') !=-1}" v-for="(ticket,ticketIndex) in userTicketData"
-                        @click="selectCoupons(ticketIndex)">
+                    <li :class="{coupons:true,active3:scorePriceStr2.indexOf(ticketIndex + '|') !=-1}" v-for="(ticket,ticketIndex) in userTicketData" @click="selectCoupons(ticketIndex)">
                         {{ticket.ticket_name}}
                         <br> {{ticket.discount_value}}
                     </li>
                 </ul>
             </div>
-
             <ul class="member" v-if="chargeR.hideChargeDg">
                 <li>会员</li>
                 <li>卡号：
@@ -221,10 +215,8 @@
                     <button class="active3" @click="openChargeDg">充值</button>
                 </li>
             </ul>
-
             <ul class="member " v-else>
                 <ul class="chargeDg clearfix">
-
                     <li v-for="chargeItem in chargeR.chargeList" :class="{active3:chargeR.postData.buyer_payment_type===chargeItem.code}" @click="chooseChargeWay(chargeItem.code)">{{chargeItem.name}}</li>
                 </ul>
                 <div class="scanCode" v-show="chargeR.postData.buyer_payment_type==4 || chargeR.postData.buyer_payment_type==5 ">
@@ -235,11 +227,6 @@
                     关闭
                 </div>
             </ul>
-
-
-
-
-
         </div>
         <div class="calc">
             <div class="payway-select">
@@ -267,7 +254,6 @@
             </div>
             <div class="keybord">
                 <ul>
-
                     <li :class="{huilv:numIndex==13}" v-for="(num,numIndex) in keyBoardNumList" v-html="num" @click="selectNums(numIndex)"></li>
                 </ul>
             </div>
@@ -287,8 +273,5 @@
         {{toastContent}}
     </div>
 </div>
-
-
-
 <link rel="stylesheet" href="assets/css/cashier-system.css">
 <script src="assets/js/cashier-system.js"></script>
